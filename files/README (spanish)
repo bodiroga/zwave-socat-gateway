@@ -1,0 +1,26 @@
+######################################## ARCHIVOS A EDITAR #############################################
+
+Después de ejecutar el script de instalación, hay que editar los siguientes archivos:
+
+- CONFIGURATION (/root/CONFIGURATION)
+Editar cada uno de los campos en función de las necesidades de cada uno:
+CONNECTION_TYPE: Indica si la Raspberry pi está conectada por WiFi o por cable Ethernet.
+ZWAVE_NUMBER: Número del binding al que corresponde la Raspberry pi. Si solo va a haber un binding zwave,
+              dejar las comillas.
+REFRESH_INTERVAL: Cada cuantos segundos se desea notificar al servidor del estado de la Raspberry.
+ROOM_NAME: Nombre que tendrá la Raspberry pi en la red.
+SERVER_USER: Nombre de usuario del servidor al que nos conectaremos por SSH.
+SERVER_HOST: Dirección IP o hostname del servidor al que nos conectaremos por SSH.
+ZWAVE_HOME: Ruta en la que se monta el usb Zwave en el servidor. Por ejemplo: "/home/SERVER_USER/zwave".
+            Sustituir unicamente la parte de SERVER_USER.
+ZWAVE_STICK: Ruta en la que se monta el usb Zwave en la Raspberry pi, no modificar (ver regla udev).
+
+- hostaname (/etc/hostname)
+Aquí sólo debemos poner el mismo nombre que le hemos puesto al campo 'ROOM_NAME' de CONFIGURATION. También
+se puede usar el comando raspi-config para editar el hostname de la Raspberry Pi.
+
+- SSH KEY (/root/.ssh/id_rsa)
+(NOTA: La generación de llaves SSH se debe hacer estando logueado como root en la Raspberry Pi -sudo su-)
+Generar un par de llaves SSH (pública y privada) en la Raspberry (o crear una única para todas las Raspberrys)
+y copiar la pública al servidor para que la Raspberry pueda escribir e interactuar con el servidor sin tener
+que introducir la contraseña. La forma más sencilla de copiar la llave pública es mediante el comando ssh-copy-id.

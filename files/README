@@ -1,23 +1,26 @@
-#################################### ARCHIVOS A EDITAR #########################################
+######################################## FILES TO EDIT #############################################
 
-Después de copiar el contenido de la imagen a la SD, hay que editar los siguientes archivos:
+After executing the installation script, you need to edit the following files:
 
 - CONFIGURATION (/root/CONFIGURATION)
-Editar cada uno de los campos en función de las necesidades de cada uno:
-CONNECTION_TYPE: Indica si la raspberry pi está conectada por WiFi o por cable Ethernet
-ZWAVE_NUMBER: Número del binding al que corresponde la raspberry pi. Si solo va a haber un binding, dejarlo en blanco
-REFRESH_INTERVAL: Cada cuantos segundos se desea notificar al servidor del estado de la raspberry
-ROOM_NAME: Nombre que tendrá la raspberry pi en la red
-SERVER_USER: Nombre de usuario del servidor al que nos conectaremos por ssh
-SERVER_HOST: Dirección IP o hostname del servidor al que nos conectaremos por ssh
-ZWAVE_STICK: Ruta en la que se monta el usb Zwave en la raspberry pi, no modificar (ver regla udev)
-ZWAVE_HOME: Ruta en la que se monta el usb Zwave en el servidor. Por ejemplo: "/home/SERVER_USER/zwave".
-            Sustituir unicamente la parte de SERVER_USER
+Edit the fields that you want to meet your requirements:
+CONNECTION_TYPE: Shows if the Raspberry pi is connected through WiFi or Ethernet cable to the network.
+ZWAVE_NUMBER: Number of the ZWave network controlled by this Raspberry Pi. If you are going to use a single ZWave network,
+              leave the "".
+REFRESH_INTERVAL: How often (in seconds) you want to inform the server about the state of the Raspberry Pi.
+ROOM_NAME: Name of the Raspberry Pi in the network.
+SERVER_USER: Name of the server user to which we are going to connect through SSH.
+SERVER_HOST: Hostname or IP address of the server to which we are going to connect through SSH.
+ZWAVE_HOME: Path where the virtual USB port will be mounted in the server. For example: "/home/SERVER_USER/zwave".
+            Change the SERVER_USER part only.
+ZWAVE_STICK: Path where the ZWave USB device is mounted in the Raspberry Pi, don't change it ('udev' rule).
 
 - hostaname (/etc/hostname)
-Aquí sólo debemos poner el mismo nombre que le hemos puesto al campo 'ROOM_NAME' de CONFIGURATION
+Here you should only write the same name that you have chosen for the 'ROOM_NAME' field of the CONFIGURATION file.
+You can also use the raspi-config command to change the hostname of the Raspberry Pi.
 
 - SSH KEY (/root/.ssh/id_rsa)
-Generar una llave ssh en la raspberry (o crear una única para todas las raspberrys que se vayan a usar)
-y copiarla al servidor para que la raspberry pueda escribir e interactuar con el servidor sin tener que
-introducir la contraseña.
+(NOTE: The generation of the SSH keys must be done logged as the root user in the Raspberry Pi -sudo su-)
+Create a couple of SSH keys (public and private) on the Raspberry (or create a couple for all the Raspberrys)
+and copy the public key to your server, so that the Rasbperry can connect and interact with the server without
+introducing the server's password. The easiest way to copy the public key is using the ssh-copy-id command.
