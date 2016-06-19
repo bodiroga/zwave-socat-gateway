@@ -1,0 +1,23 @@
+#################################### ARCHIVOS A EDITAR #########################################
+
+Después de copiar el contenido de la imagen a la SD, hay que editar los siguientes archivos:
+
+- CONFIGURATION (/root/CONFIGURATION)
+Editar cada uno de los campos en función de las necesidades de cada uno:
+CONNECTION_TYPE: Indica si la raspberry pi está conectada por WiFi o por cable Ethernet
+ZWAVE_NUMBER: Número del binding al que corresponde la raspberry pi. Si solo va a haber un binding, dejarlo en blanco
+REFRESH_INTERVAL: Cada cuantos segundos se desea notificar al servidor del estado de la raspberry
+ROOM_NAME: Nombre que tendrá la raspberry pi en la red
+SERVER_USER: Nombre de usuario del servidor al que nos conectaremos por ssh
+SERVER_HOST: Dirección IP o hostname del servidor al que nos conectaremos por ssh
+ZWAVE_STICK: Ruta en la que se monta el usb Zwave en la raspberry pi, no modificar (ver regla udev)
+ZWAVE_HOME: Ruta en la que se monta el usb Zwave en el servidor. Por ejemplo: "/home/SERVER_USER/zwave".
+            Sustituir unicamente la parte de SERVER_USER
+
+- hostaname (/etc/hostname)
+Aquí sólo debemos poner el mismo nombre que le hemos puesto al campo 'ROOM_NAME' de CONFIGURATION
+
+- SSH KEY (/root/.ssh/id_rsa)
+Generar una llave ssh en la raspberry (o crear una única para todas las raspberrys que se vayan a usar)
+y copiarla al servidor para que la raspberry pueda escribir e interactuar con el servidor sin tener que
+introducir la contraseña.

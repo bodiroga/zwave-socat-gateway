@@ -1,0 +1,10 @@
+{
+    "CONNECTION_TYPE": "ethernet",
+    "REFRESH_INTERVAL": 5,
+    "ZWAVE_NUMBER": "",
+    "ROOM_NAME": "",
+    "SERVER_USER": "",
+    "SERVER_HOST": "",
+    "ZWAVE_HOME": "",
+    "ZWAVE_STICK": "/dev/zwave"
+}
