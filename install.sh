@@ -30,7 +30,7 @@ else
 fi
 
 echo -e '\nCreating a crontab entry for the root user...'
-{ crontab -l -u root; echo '@reboot /usr/bin/python /root/raspberry_checker.py'; } | crontab -u root -
+{ crontab -l -u root; echo '@reboot /usr/bin/python /root/zwave-socat-gateway.py'; } | crontab -u root -
 
 echo -e '\nRemoving the tmp folder...'
 rm -rf /tmp/zwave-socat-gateway
