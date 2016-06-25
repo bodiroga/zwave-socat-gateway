@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# chkconfig: 346 92 18
+# description: Startup/Shutdown ZWave-Socat gateway
+
+# depending on parameter -- startup, shutdown, restart
+# of the instance and listener or usage display
+
+case "$1" in
+    start)
+        # Start ZWave-Socat gateway
+        echo -n "Starting ZWave-Socat gateway "
+        /usr/bin/python /root/zwave-socat-gateway.py &
+        echo "OK"
+        ;;
+    status)
+        # Check ZWave-Socat gateway status
+        echo "Checking ZWave-Socat gateway status..."
+        PID=$(ps aux | grep 'zwave-socat-gateway.py' | grep python | awk '{print $2}')
+        if ps aux | grep 'zwave-socat-gateway.py' | grep python > /dev/null 2> /dev/null; then
+           echo "Service is running"
+        else
+           echo "Service is not running"
+        fi
+        ;;
+    stop)
+        # Stop ZWave-Socat gateway
+        echo -n "Shutdown ZWave-Socat gateway... "
+        kill -9 $(ps aux | grep 'zwave-socat-gateway.py' | awk '{print $2}') 2> /dev/null
+        echo "OK"
+        ;;
+    reload|restart)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 start|stop|restart|status|reload"
+        exit 1
+esac
+exit 0

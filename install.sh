@@ -29,8 +29,9 @@ else
 	echo -e '\nYour CONFIGURATION file already exists, we will not touch it...'
 fi
 
-echo -e '\nCreating a crontab entry for the root user...'
-{ crontab -l -u root; echo '@reboot /usr/bin/python /root/zwave-socat-gateway.py'; } | crontab -u root -
+echo -e '\nAdding the start script file...'
+cp -rf init.d/* /etc/init.d/
+update-rc.d zwave-socat defaults
 
 echo -e '\nRemoving the tmp folder...'
 rm -rf /tmp/zwave-socat-gateway
