@@ -21,6 +21,10 @@ cp -rf udev/* /etc/udev/rules.d/
 echo -e '\nMoving the program files to the /root directory...'
 cp -rf files/* /root
 
+echo -e '\nAdding the start script file...'
+cp -rf init.d/* /etc/init.d/
+update-rc.d zwave-socat defaults
+
 cd /root
 if [ ! -f CONFIGURATION ]; then
 	echo -e '\nCreating the CONFIGURATION file, edit the parameters to meet your needs...'
@@ -28,10 +32,6 @@ if [ ! -f CONFIGURATION ]; then
 else
 	echo -e '\nYour CONFIGURATION file already exists, we will not touch it...'
 fi
-
-echo -e '\nAdding the start script file...'
-cp -rf init.d/* /etc/init.d/
-update-rc.d zwave-socat defaults
 
 echo -e '\nRemoving the tmp folder...'
 rm -rf /tmp/zwave-socat-gateway
