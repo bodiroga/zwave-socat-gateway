@@ -1,10 +1,13 @@
 #!/bin/bash
 #
-# chkconfig: 346 92 18
-# description: Startup/Shutdown ZWave-Socat gateway
-
-# depending on parameter -- startup, shutdown, restart
-# of the instance and listener or usage display
+### BEGIN INIT INFO
+# Provides: zwave-socat
+# Required-Start: $syslog
+# Required-Stop: $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Description: Startup/Shutdown zwave-socat-gateway
+### END INIT INFO
 
 case "$1" in
     start)
