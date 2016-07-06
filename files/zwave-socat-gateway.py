@@ -69,7 +69,8 @@ def updateLogFile():
 
 # MAIN PROCESS
 if __name__ == "__main__":
-    configuration = files.readConfigFile("CONFIGURATION")
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    configuration = files.readConfigFile("%s/CONFIGURATION" % (script_directory))
     if not configuration:
         print "Error al leer el archivo de configuracion"
         sys.exit(1)
